@@ -2,13 +2,13 @@
 
 ##--------------------------------------------------------------------------------------------
 
-## Este programa permite Validar de manera Automatica distintos aspectos de los planos de Mensura
+## Este programa permite Validar de manera Automatica distintos aspectos de los archivos dxf que corresponden a las constituciones de estados parcelarios
 ## que deban presentarse ante la Subgerencia Operativa de Registro de Mensuras - Gerencia Operativa
 ## de Catastro Fìsico - DGROC - GCBA, en formato DXF.
 
 ## No separe el ejecutable .exe de los archivos .xls y .csv uesto que los mismos son archivos de configuración del programa y sin ellos el mismo dejaría de funcionar.
 
-## Para reportar incidentes con el programa esriba a nquinterno@buenosaires.gob.ar enviando captura de pantalla de la consola (pantalla nehgra con el error), y el archivo .dxf que esta queriendo validar
+## Para reportar incidentes con el programa esriba a nquinterno@buenosaires.gob.ar enviando captura de pantalla de la consola (pantalla negra con el error), y el archivo .dxf que esta queriendo validar
 
 ## Valida entre otros aspectos:
     ## * Coherencia y completitud y correcta representación de datos indicados en el espacio modelo
