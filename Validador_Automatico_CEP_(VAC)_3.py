@@ -1362,7 +1362,7 @@ def chequeo_layout():
 
 
     #1- INICIO Validar que el layout de la ficha tenga el nombre que debe tener
-    patron_layout_cep = re.compile('(^([0-9]{3})-(([0-9]{3})|([0-9]{3}[A-Z]{1}))-(([0-9]{3})|([0-9]{3}[a-z]{1})))$')
+    patron_layout_cep = re.compile('(^([0-9]{3})-(([0-9]{3})|([0-9]{3}[A-Z]{1}))-(([0-9]{3})|([0-9]{3}[a-z]{1})|(000[A-Z]{1})))$')
 
     for layout in layouts:
 
@@ -1439,10 +1439,13 @@ def georref():
     #transformer = Transformer.from_crs("EPSG:4326", "EPSG:9498")
     
                             
+
     for i in range(len(smp)):
         sm_0=(smp[i].split("-"))
         sm.append(f"{sm_0[0]}-{sm_0[1]}")
 
+        
+    
 
     if len(smp)==1:
         try:
@@ -1666,15 +1669,15 @@ def georref():
         else:
 
                 validaciones2.loc[23,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
-                validaciones2.loc[23,'Observacion']="Error: No se puede validar la georreferenciación porque no se encuentra en Ciudad3d la parcela indicada en el layout sss-mmm-ppp"
+                validaciones2.loc[23,'Observacion']="Error: No se puede validar la georreferenciación porque no se encuentra en Ciudad3d la parcela indicada en el layout sss-mmm-ppp, o no se puede establecer conexión con la misma"
                 validaciones2.loc[23,'Cetegoría']='Tolerancias'
 
                 validaciones2.loc[24,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
-                validaciones2.loc[24,'Observacion']="Error: No se puede validar la georreferenciación porque no se encuentra en Ciudad3d la parcela indicada en el layout sss-mmm-ppp"
+                validaciones2.loc[24,'Observacion']="Error: No se puede validar la georreferenciación porque no se encuentra en Ciudad3d la parcela indicada en el layout sss-mmm-ppp, o no se puede establecer conexión con la misma"
                 validaciones2.loc[24,'Cetegoría']='Tolerancias'
             
     
-    else:
+    elif len(smp)>1:
         validaciones2.loc[25,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
         validaciones2.loc[25,'Observacion']="Error: Existen mas de un Layout de Ficha catastral con nomenclatura en su nombre SSS-MMMM-PPPP"
         validaciones2.loc[25,'Cetegoría']='Layout'
@@ -1686,6 +1689,21 @@ def georref():
         validaciones2.loc[23,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
         validaciones2.loc[23,'Observacion']="Error: Existen mas de un Layout de Ficha catastral con nomenclatura en su nombre SSS-MMMM-PPPP, con lo que no es posible validar las diferencias entre parcela medida y antecedente"
         validaciones2.loc[23,'Cetegoría']='Layout'
+
+    else:
+
+        validaciones2.loc[25,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
+        validaciones2.loc[25,'Observacion']="Error: No existe layout cuyo nombre tenga formato de nomenclatura catastral SSS-MMMM-PPPP"
+        validaciones2.loc[25,'Cetegoría']='Layout'
+
+        validaciones2.loc[24,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
+        validaciones2.loc[24,'Observacion']="Error: No existe layout cuyo nombre tenga formato de nomenclatura catastral SSS-MMMM-PPPP, con lo que no es posible validar las diferencias entre parcela medida y antecedente"
+        validaciones2.loc[24,'Cetegoría']='Layout'
+
+        validaciones2.loc[23,'Resultado']=-1 # si hay un -1 en la bandera arroja error 
+        validaciones2.loc[23,'Observacion']="Error: No existe layout cuyo nombre tenga formato de nomenclatura catastral SSS-MMMM-PPPP, con lo que no es posible validar las diferencias entre parcela medida y antecedente"
+        validaciones2.loc[23,'Cetegoría']='Layout'
+        
 
 def resumen():
     global mejoras_poly
